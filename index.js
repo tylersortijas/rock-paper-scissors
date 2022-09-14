@@ -8,13 +8,23 @@ function getComputerChoice(){
     return computerChoices[random];
 };
 
-function play(playerSelection, computerSelection){
-    let playerAnswer = prompt("Choose between Rock, Paper, or Scissor.");
+function playRound(playerSelection, computerSelection){
+    playerSelection.toUpperCase();
 
-    playerSelection = playerAnswer;
-    computerSelection = getComputerChoice();
-    if(playerSelection)
+    if(playerSelection === "ROCK" && computerSelection === "PAPER" || playerSelection === "PAPER" && computerSelection === "ROCK") {
+        return "You Lose! Paper beats Rock!";
+    } else if(playerSelection === "PAPER" && computerSelection === "SCISSOR" || playerSelection === "SCISSOR" && computerSelection === "PAPER") {
+        return "Let's Go! Scissor beats Paper!"
+    } else if(playerSelection === "SCISSOR" && computerSelection === "ROCK" || playerSelection === "ROCK" && computerSelection === "SCISSOR") {
+        return "Scissors can't cut a Rock! You Lost!";
+    } else {
+        return "Hey! You copied me!";
+    }
 };
+
+const playerSelection = 'rock';
+const computerSelection = getComputerChoice();
+console.log(playRound(playerSelection, computerSelection));
 
 
 
