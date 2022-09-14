@@ -6,78 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors</title>
+    <script src="./index.js" defer></script>
 </head>
 
 <body>
-    <script>
-        let playerScore = 0;
-        let computerScore = 0;
 
-        function computerPlay() {
-            const choices = ['ROCK', 'SCISSORS', 'PAPER'];
-
-            const random = choices[Math.floor(Math.random() * choices.length)];
-            return random;
-        }
-
-        function playRound(playerSelection, computerSelection) {
-            if(playerSelection === computerSelection) {
-                return 'tie';
-            }
-
-            if (
-                (playerSelection === 'ROCK' && computerSelection === 'SCISSORS') ||
-                (playerSelection === 'PAPER' && computerSelection === 'ROCK') ||
-                (playerSelection === 'SCISSORS' && computerSelection === 'PAPER')
-            ) {
-                playerScore++;
-                return `Great Job! ${playerSelection} beats ${computerSelection}`;
-            }
-
-            if(
-                (computerSelection === 'ROCK' && playerSelection === 'SCISSORS') ||
-                (computerSelection === 'PAPER' && playerSelection === 'ROCK') ||
-                (computerSelection === 'SCISSORS' && playerSelection === 'PAPER')
-            ) {
-                computerScore++;
-                return 'Oh no.. the bot won.';
-            }
-        }
-
-        function game() {
-            playRound(playerSelection, computerSelection);
-            console.log(playerScore)
-            console.log(computerScore)
-            playRound(playerSelection, computerSelection);
-            console.log(playerScore)
-            console.log(computerScore)
-            playRound(playerSelection, computerSelection);
-            console.log(playerScore)
-            console.log(computerScore)
-            playRound(playerSelection, computerSelection);
-            console.log(playerScore)
-            console.log(computerScore)
-            playRound(playerSelection, computerSelection);
-            console.log(playerScore)
-            console.log(computerScore)
-
-            if (playerScore === 5) {
-                return `With a score of ${playerScore}.. They are the winners`;
-            }
-            if (computerScore === 5) {
-                return `The bot won with ${computerScore} points..`;
-            }
-            if (playerScore === 0 && computerScore === 0) {
-                return 'it\'s a tie'
-            }
-        }
-
-        let playerPlay = prompt('Time to play Rock, Paper, Scissors! ');
-        const playerSelection = playerPlay.toUpperCase();
-        const computerSelection = computerPlay();
-        // console.log(playRound(playerSelection, computerSelection)); 
-        console.log(game());
-    </script>
 </body>
 
 </html>
