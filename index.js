@@ -1,30 +1,45 @@
-const computerChoices = ['ROCK', 'PAPER', 'SCISSORS'];
+let playerScore = 0;
+let computerScore = 0;
 
 
 function getComputerChoice(){
     let random = Math.floor(Math.random() * 3);
-
-    console.log(computerChoices[random]);
-    return computerChoices[random];
-};
-
-function playRound(playerSelection, computerSelection){
-    playerSelection.toUpperCase();
-
-    if(playerSelection === "ROCK" && computerSelection === "PAPER" || playerSelection === "PAPER" && computerSelection === "ROCK") {
-        return "You Lose! Paper beats Rock!";
-    } else if(playerSelection === "PAPER" && computerSelection === "SCISSOR" || playerSelection === "SCISSOR" && computerSelection === "PAPER") {
-        return "Let's Go! Scissor beats Paper!"
-    } else if(playerSelection === "SCISSOR" && computerSelection === "ROCK" || playerSelection === "ROCK" && computerSelection === "SCISSOR") {
-        return "Scissors can't cut a Rock! You Lost!";
-    } else {
-        return "Hey! You copied me!";
+    switch(random) {
+        case 0:
+            return 'ROCK';
+        case 1:
+            return 'PAPER';
+        case 2:
+            return 'SCISSOR';
     }
 };
 
-const playerSelection = 'rock';
-const computerSelection = getComputerChoice();
+function playRound(playerSelection, computerSelection){
+    let result = ''
+
+    if(playerSelection == computerSelection) {
+        result = `You both chose ${playerSelection}`;
+    } else if((playerSelection == 'PAPER' && computerSelection == 'ROCK') ||
+    (playerSelection == 'ROCK' && computerSelection == 'SCISSOR') ||
+    (playerSelection == 'SCISSOR' && computerSelection == 'PAPER')) {
+        playerScore++;
+        result = "Player wins! The king of RPS!"
+    } else {
+        computerScore++;
+        result = "The computer has won. You just got beaten by a bot!";
+    }
+    return result;
+};
+
+const playerSelection = prompt("choose.. rock paper scissors").toUpperCase();
+let computerSelection = getComputerChoice();
 console.log(playRound(playerSelection, computerSelection));
+
+function game() {
+    for(let i=0; i < 5; i++) {
+        playRound(playerSelection, computerSelection);
+    }
+}
 
 
 
