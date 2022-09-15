@@ -1,46 +1,90 @@
+const choices = ['rock', 'paper', 'scissors'];
 let playerScore = 0;
 let computerScore = 0;
 
+function getComputerChoice() {
+    let random = Math.floor(Math.random() * choices.length);
+    return choices[random];
+};
 
-function getComputerChoice(){
-    let random = Math.floor(Math.random() * 3);
-    switch(random) {
-        case 0:
-            return 'ROCK';
-        case 1:
-            return 'PAPER';
-        case 2:
-            return 'SCISSOR';
+function playerChoice() {
+    let validatedInput = false;
+    while(validatedInput == false){
+        const choice = prompt("Rock Paper Scissors");
+        if(choice == null){
+            continue;
+        }
+        const choiceInLower = choice.toLowerCase();
+        if(choices.includes(choiceInLower)){
+            validatedInput = true;
+            return choiceInLower;
+        }
     }
 };
 
-function playRound(playerSelection, computerSelection){
-    let result = ''
-
-    if(playerSelection == computerSelection) {
-        result = `You both chose ${playerSelection}`;
-    } else if((playerSelection == 'PAPER' && computerSelection == 'ROCK') ||
-    (playerSelection == 'ROCK' && computerSelection == 'SCISSOR') ||
-    (playerSelection == 'SCISSOR' && computerSelection == 'PAPER')) {
+function playRound(playerSelection, computerSelection) {
+    const results = checkWinner(playerSelection, computerSelection);
+    if (results == "Tie") {
+        return "It's a Tie!";
+    } else if (results == "Player won!") {
         playerScore++;
-        result = "Player wins! The king of RPS!"
+        return `The player has won with ${playerSelection} against ${computerSelection}`;
     } else {
         computerScore++;
-        result = "The computer has won. You just got beaten by a bot!";
+        return `Computer has won! They chose ${computerSelection}`;
     }
-    return result;
 };
 
-const playerSelection = prompt("choose.. rock paper scissors").toUpperCase();
-let computerSelection = getComputerChoice();
-console.log(playRound(playerSelection, computerSelection));
-
 function game() {
-    for(let i=0; i < 5; i++) {
+    console.log("Welcome to Rock Paper Scissors!")
+    console.log("---------------------------------------------------------------------")
+    for (i = 1; i <= 5; i++) {
+        const playerSelection = playerChoice();
+        const computerSelection = getComputerChoice();
         playRound(playerSelection, computerSelection);
+        if(playerSelection === computerSelection){
+            console.log(`Tie`);
+            console.log(`Player: ${playerSelection} | Computer: ${computerSelection}`);
+            console.log(`Round ${i} Player: ${playerScore} | Computer: ${computerScore}`);
+            console.log("---------------------------------------------------------------------")
+        }else {
+            console.log(`Player: ${playerSelection} | Computer: ${computerSelection}`);
+            console.log(`Round ${i} Player: ${playerScore} | Computer: ${computerScore}`);
+            console.log("---------------------------------------------------------------------")
+        }
     }
+    console.log("Game Over!");
+    if(playerScore > computerScore) {
+        console.log("Player is the winner!")
+    } else if(playerScore < computerScore) {
+        console.log("Computer was the winner!")
+    } else {
+        console.log("It was a tie!")
+    }
+    gameOver();
+};
+
+
+function checkWinner(choicePlayer, choiceComputer) {
+    if (choicePlayer === choiceComputer) {
+        return 'Tie';
+    } else if (
+        (choicePlayer === 'rock' && choiceComputer === "scissors") ||
+        (choicePlayer === 'paper' && choiceComputer === "rock") ||
+        (choicePlayer === 'scissors' && choiceComputer === "paper")
+    ) {
+        return "Player won!";
+    } else {
+        return "Computer won!";
+    }
+};
+
+function gameOver() {
+    playerScore = 0;
+    computerScore = 0;
 }
 
+console.log(game());
 
 
 
@@ -154,5 +198,5 @@ function game() {
 // let playerPlay = prompt('Time to play Rock, Paper, Scissors! ');
 // const playerSelection = playerPlay.toUpperCase();
 // const computerSelection = computerPlay();
-// // console.log(playRound(playerSelection, computerSelection)); 
+// // console.log(playRound(playerSelection, computerSelection));
 // console.log(game());
