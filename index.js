@@ -9,13 +9,13 @@ function getComputerChoice() {
 
 function playerChoice() {
     let validatedInput = false;
-    while(validatedInput == false){
+    while (validatedInput == false) {
         const choice = prompt("Rock Paper Scissors");
-        if(choice == null){
+        if (choice == null) {
             continue;
         }
         const choiceInLower = choice.toLowerCase();
-        if(choices.includes(choiceInLower)){
+        if (choices.includes(choiceInLower)) {
             validatedInput = true;
             return choiceInLower;
         }
@@ -42,21 +42,21 @@ function game() {
         const playerSelection = playerChoice();
         const computerSelection = getComputerChoice();
         playRound(playerSelection, computerSelection);
-        if(playerSelection === computerSelection){
+        if (playerSelection === computerSelection) {
             console.log(`Tie`);
             console.log(`Player: ${playerSelection} | Computer: ${computerSelection}`);
             console.log(`Round ${i} Player: ${playerScore} | Computer: ${computerScore}`);
             console.log("---------------------------------------------------------------------")
-        }else {
+        } else {
             console.log(`Player: ${playerSelection} | Computer: ${computerSelection}`);
             console.log(`Round ${i} Player: ${playerScore} | Computer: ${computerScore}`);
             console.log("---------------------------------------------------------------------")
         }
     }
     console.log("Game Over!");
-    if(playerScore > computerScore) {
+    if (playerScore > computerScore) {
         console.log("Player is the winner!")
-    } else if(playerScore < computerScore) {
+    } else if (playerScore < computerScore) {
         console.log("Computer was the winner!")
     } else {
         console.log("It was a tie!")
