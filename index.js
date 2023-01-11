@@ -4,6 +4,15 @@ let computerScore = 0;
 
 const container = document.querySelector('#container');
 const resultsDiv = document.querySelector('.results'); 
+
+
+let player = document.querySelector("#playerScore");
+player.textContent = `Player Score: ${playerScore}`;
+let computer = document.querySelector("#computerScore");
+computer.textContent = `Computer Score: ${computerScore}`;
+
+let output = document.querySelector("#output");
+
 let rock = document.querySelector('#rock');
 let paper = document.querySelector('#paper');
 let scissors = document.querySelector('#scissors');
@@ -31,77 +40,42 @@ function playerChoice() {
 
 function playRound(playerSelection, computerSelection) {
     if (playerSelection === computerSelection) {
-        const p = document.createElement('p');
-        const currentScore = document.createElement('h3');
-        currentScore.innerText = `Player Score: ${playerScore} Computer Score: ${computerScore}`;
-        p.innerText = `You tied! You both picked ${playerSelection}`;
-        resultsDiv.appendChild(p);
-        resultsDiv.appendChild(currentScore);
+        output.textContent = "Looks like it was a tie!"
     } else if (playerSelection === 'scissors' && computerSelection === 'rock') {
         computerScore++;
-        const p = document.createElement('p');
-        const currentScore = document.createElement('h3');
-        currentScore.innerText = `Player Score: ${playerScore} Computer Score: ${computerScore}`;
-        p.innerText = 'You lost! Rock crushes Scissors'
-        resultsDiv.appendChild(p);
-        resultsDiv.appendChild(currentScore);
+        output.textContent = "Ouch! That Rock just slammed you!"
+        computer.textContent = `Computer Score: ${computerScore}`;
     } else if (playerSelection === 'scissors' && computerSelection === 'paper') {
         playerScore++;
-        const p = document.createElement('p');
-        const currentScore = document.createElement('h3');
-        currentScore.innerText = `Player Score: ${playerScore} Computer Score: ${computerScore}`;
-        p.innerText = 'You won! Scissors cut paper';
-        resultsDiv.appendChild(p);
-        resultsDiv.appendChild(currentScore);
+        output.textContent = "Nice! Scissors cut Paper!"
+        player.textContent = `Player Score: ${playerScore}`;
     } else if (playerSelection === 'rock' && computerSelection === 'paper') {
         computerScore++;
-        const p = document.createElement('p');
-        const currentScore = document.createElement('h3');
-        currentScore.innerText = `Player Score: ${playerScore} Computer Score: ${computerScore}`;
-        p.innerText = 'You lost Paper covers Rock';
-        resultsDiv.appendChild(p);
-        resultsDiv.appendChild(currentScore);
+        output.textContent = "Your Rock just got wrapped!"
+        computer.textContent = `Computer Score: ${computerScore}`;
     } else if (playerSelection === 'rock' && computerSelection === 'scissors') {
         playerScore++;
-        const p = document.createElement('p');
-        const currentScore = document.createElement('h3');
-        currentScore.innerText = `Player Score: ${playerScore} Computer Score: ${computerScore}`;
-        p.innerText = 'You won! Rock crushes Scissors';
-        resultsDiv.appendChild(p);
-        resultsDiv.appendChild(currentScore);
+        output.textContent = "His Paper just got crushed by your Rock!"
+        player.textContent = `Player Score: ${playerScore}`;
     } else if (playerSelection === 'paper' && computerSelection === 'scissors') {
         computerScore++;
-        const p = document.createElement('p');
-        const currentScore = document.createElement('h3');
-        currentScore.innerText = `Player Score: ${playerScore} Computer Score: ${computerScore}`;
-        p.innerText = 'You lost! Scissors cut paper';
-        resultsDiv.appendChild(p);
-        resultsDiv.appendChild(currentScore);
+        output.textContent = "You lost Scissors just ripped your Paper!"
+        computer.textContent = `Computer Score: ${computerScore}`;
     } else if (playerSelection === 'paper' && computerSelection === 'rock') {
         playerScore++;
-        const p = document.createElement('p');
-        const currentScore = document.createElement('h3');
-        currentScore.innerText = `Player Score: ${playerScore} Computer Score: ${computerScore}`;
-        p.innerText = 'You won! Paper covers Rock';
-        resultsDiv.appendChild(p);
-        resultsDiv.appendChild(currentScore);
+        output.textContent = "Your Paper just covered his Rock!"
+        player.textContent = `Player Score: ${playerScore}`;
     }
 
     if(playerScore === 5 || computerScore === 5){
         if (playerScore > computerScore) {
-            const winnerH1 = document.createElement('h1');
-            winnerH1.innerText = "You are the winner of the game";
-            resultsDiv.appendChild(winnerH1);
+            output.textContent = "You won the game! Nice job! Play again!"
             gameOver();
         } else if (computerScore > playerScore) {
-            const winnerH1 = document.createElement('h1');
-            winnerH1.innerText = "You lost the game! Computer wins!";
-            resultsDiv.appendChild(winnerH1);
+            output.textContent = "The Computer has got you beaten!"
             gameOver();
         } else {
-            const winnerH1 = document.createElement('h1');
-            winnerH1.innerText = "It was a tie!";
-            resultsDiv.appendChild(winnerH1);
+            output.textContent = "It's a tie!?"
             gameOver();
         }
     }
@@ -159,7 +133,9 @@ scissors.addEventListener('click', () => {
 
 function gameOver() {
     playerScore = 0;
+    player.textContent = `Player Score: ${playerScore}`;
     computerScore = 0;
+    computer.textContent = `Computer Score: ${computerScore}`;
 }
 
 
