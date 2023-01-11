@@ -1,0 +1,59 @@
+html {
+    font-size: 40px;
+    background-color: gray;
+    font-family: 'Sofia Sans Extra Condensed', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+}
+
+.title {
+    width: 100%;
+    background-color: black;
+    color: white;
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+}
+
+img {
+    width: 125px;
+    height: 150px;
+}
+
+.container button {
+    margin: 0 10px 0 10px;
+    border-radius: 50%;
+    width: 220px;
+    height: 220px;
+    transition-duration: 0.4s;
+}
+
+.container button:hover {
+    background-color: green;
+    transform: scale(1.2);
+}
+
+.score {
+    display: flex;
+    gap: 20px;
+}
+
+#output {
+    font-size: 50px;
+}
+
+footer {
+    background-color: darkgrey;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+}
