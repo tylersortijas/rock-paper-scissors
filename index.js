@@ -24,6 +24,7 @@ function getComputerChoice() {
 };
 
 function playerChoice() {
+    // This function is for the typed version of game!
     let validatedInput = false;
     while (validatedInput == false) {
         const choice = prompt("Rock Paper Scissors");
